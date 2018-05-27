@@ -67,7 +67,6 @@ export default class Home extends Component {
                   showsHorizontalScrollIndicator={false}
                 >
                   <View style={{width: width}}>
-                    
                   </View>
                   <View style={{width: width}}>
                     <Text>WEEK</Text>
@@ -97,8 +96,7 @@ export default class Home extends Component {
                   <Input 
                   placeholder={'Search Tickers'}
                   onChangeText={(text) => {this.setState({inputText: text})}}
-                  autoCorrect={'none'}
-                  autoCapitalize={'none'}
+                  
                   > 
                   </Input>
                 </Item>
