@@ -89,7 +89,6 @@ export default {
   CheckboxIconSize: platform === "ios" ? 21 : 16,
   CheckboxIconMarginTop: platform === "ios" ? undefined : 1,
   CheckboxFontSize: platform === "ios" ? 23 / 0.9 : 17,
-  DefaultFontSize: 17,
   checkboxBgColor: "#039BE5",
   checkboxSize: 20,
   checkboxTickColor: "#fff",
@@ -104,6 +103,7 @@ export default {
   brandLight: "#f4f4f4",
 
   // Font
+  DefaultFontSize: 16,
   fontFamily: platform === "ios" ? "System" : "Roboto",
   fontSizeBase: 15,
   get fontSizeH1() {
@@ -184,6 +184,7 @@ export default {
   listItemPadding: platform === "ios" ? 10 : 12,
   listNoteColor: "#808080",
   listNoteSize: 13,
+  listItemSelected: platform === "ios" ? "#007aff" : "#3F51B5",
 
   // Progress Bar
   defaultProgressColor: "#E4202D",
@@ -231,7 +232,7 @@ export default {
   // Title
   titleFontfamily: platform === "ios" ? "System" : "Roboto_medium",
   titleFontSize: platform === "ios" ? 17 : 19,
-  subTitleFontSize: platform === "ios" ? 12 : 14,
+  subTitleFontSize: platform === "ios" ? 11 : 14,
   subtitleColor: platform === "ios" ? "#000" : "#fff",
   titleFontColor: platform === "ios" ? "#000" : "#fff",
 
