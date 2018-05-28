@@ -3,7 +3,7 @@ import App from './App';
 import React, {Component} from 'react';
 import { Provider, Connect } from 'react-redux';
 
-import store from './src/Store';
+import store from './Store';
 
 export default class index extends Component {
     render() {

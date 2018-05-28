@@ -3,9 +3,9 @@ import createSagaMiddleWare from 'redux-saga';
 import reducers from './js/reducers';
 import root from './js/reducers/saga';
 
-export const addListener = createReduxBoundAddListener('root');
 
-const createSagaMiddleWare = createSagaMiddleWare();
+
+const sagaMiddleware = createSagaMiddleWare();
 
 const store = createStore(
     reducers, 
