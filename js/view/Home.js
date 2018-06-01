@@ -7,7 +7,8 @@ import {
 } from 'react-native';
 import {View, H1, StyleProvider, Button, Text, Container, Header, Content, Left, Body, Right, Icon, Title, Card, CardItem, Spinner, Form, Input, Item, Fab} from 'native-base';
 import { createStackNavigator } from 'react-navigation';
-
+import { connect } from 'react-redux'
+import { grabSingleStock } from '../reducers/StockReducer'
 
 const {width, height} = Dimensions.get('window');
 
@@ -27,7 +28,7 @@ const NavHeader = ({}) => (
   </Header>
 );
 
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +44,6 @@ export default class Home extends Component {
 
   render() {
     const data = [ 50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80 ]
-
     return (
       <Container style={{backgroundColor: '#FFFDF9'}} >
         <NavHeader />
@@ -106,6 +106,7 @@ export default class Home extends Component {
               <Button block disabled={this.state.inputText == '' || this.state.inputText == null} 
                 style={{width: '100%'}}
                 onPress={() => {
+                  this.props.grabSingleStock({symbol: this.state.inputText})
                   this.setState({
                     selectedTicker: this.state.inputText,
                     loading: true,});
@@ -121,4 +122,15 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  stock: state.stock.stock,
+  user: state.auth.user
+})
+
+const mapDispatchToProps = {
+  grabSingleStock,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
 

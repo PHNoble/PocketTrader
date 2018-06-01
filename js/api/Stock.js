@@ -10,7 +10,6 @@ export const getData = req => {
   const funct = req.function;
   const symbol = req.symbol;
   const interval = req.interval;
-
   if (!funct) {
     return {};
   } else {
@@ -18,10 +17,10 @@ export const getData = req => {
       if (!symbol) {
         return {};
       }
-      axios({
+      return axios({
         method: "get",
         url:
-          "https://www.alphavantage.co/query?function=${funct}&symbol=${symbol}&outputsize=full&apikey=${API_KEY}"
+          `https://www.alphavantage.co/query?function=${funct}&symbol=${symbol}&outputsize=full&apikey=${API_KEY}`
       })
         .then(response => {
           return response;
@@ -30,10 +29,10 @@ export const getData = req => {
           return {};
         });
     } else if (funct === "SECTOR") {
-      axios({
+      return axios({
         method: "get",
         url:
-          "https://www.alphavantage.co/query?function=${funct}&apikey=${API_KEY}"
+          `https://www.alphavantage.co/query?function=${funct}&apikey=${API_KEY}`
       })
         .then(response => {
           return response;
@@ -42,13 +41,13 @@ export const getData = req => {
           return {};
         });
     } else {
-      axios({
+      return axios({
         method: "get",
         url:
-          "https://www.alphavantage.co/query?function=${funct}&symbol=${symbol}&outputsize=full&interval=${interval}&apikey=${API_KEY}"
+          `https://www.alphavantage.co/query?function=${funct}&symbol=${symbol}&interval=${interval}&outputsize=full&apikey=${API_KEY}`
       })
         .then(response => {
-          return response;
+          return response.data;
         })
         .catch(err => {
           return {};

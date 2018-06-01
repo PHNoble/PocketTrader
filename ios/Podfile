@@ -7,6 +7,7 @@ target 'pockettrader' do
 
   # Pods for pockettrader
   pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 
   target 'pockettraderTests' do
     inherit! :search_paths
