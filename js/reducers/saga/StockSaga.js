@@ -5,9 +5,8 @@ import { getData } from '../../api/Stock'
 
 export const grabSingleStockAction = function*(action) {
     const req = {
-        function: "TIME_SERIES_INTRADAY",
+        function: "TIME_SERIES_DAILY",
         symbol: action.payload.symbol,
-        interval: "1min"
     }
     const result = yield call(getData, req);
     yield put({type: actions.changeStockData, payload:  result })

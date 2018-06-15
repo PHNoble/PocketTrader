@@ -9,6 +9,7 @@ import {View, H1, StyleProvider, Button, Text, Container, Header, Content, Left,
 import { createStackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
 import { grabSingleStock } from '../reducers/StockReducer'
+import Candlestick from './components/candlestick'
 
 const {width, height} = Dimensions.get('window');
 
@@ -34,7 +35,6 @@ class Home extends Component {
     this.state = {
       loaded: false,
       loading: false,
-      selectedTicker: 'none', // NONE, or given ticker
       graphType: 'Day', // DAY, WEEK, MONTH, YEAR
       fabActive: false,
       inputText: '',
@@ -48,43 +48,9 @@ class Home extends Component {
       <Container style={{backgroundColor: '#FFFDF9'}} >
         <NavHeader />
         {/*END HEADER BEGIN CONTENT*/}
-        <Content scrollEnabled={false}>
+        <Content>
           {/*CARD CONTENT BEGIN*/}
-          <H1>Some title???</H1>
-          {/*BEGIN GRAPH DISPLAY CARD*/}
-          {!this.state.loaded && 
-          <Card>
-            <CardItem header>
-              <Icon name="stats" />
-              <Text>Prediction on {this.state.selectedTicker} for {this.state.graphType}</Text>
-              
-            </CardItem>
-            <CardItem>
-              <Body>
-                <ScrollView 
-                  pagingEnabled={true}
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                >
-                  <View style={{width: width}}>
-                  </View>
-                  <View style={{width: width}}>
-                    <Text>WEEK</Text>
-                  </View>
-                  <View style={{width: width}}>
-                    <Text>MONTH</Text>
-                  </View>
-                  <View style={{width: width}}>
-                    <Text>YEAR</Text>
-                  </View>
-                </ScrollView>
-              </Body>
-            </CardItem>
-          </Card>}
-          {/*ACTIVITY INDICATOR*/}
-          {this.state.loading && this.state.selectedTicker != 'none' &&
-            <Spinner />
-          }
+          <H1>Pick a stock</H1>
           {/*Search Form*/}
           <Card>
             <CardItem header>
@@ -96,7 +62,6 @@ class Home extends Component {
                   <Input 
                   placeholder={'Search Tickers'}
                   onChangeText={(text) => {this.setState({inputText: text})}}
-                  
                   > 
                   </Input>
                 </Item>
@@ -117,6 +82,19 @@ class Home extends Component {
               </Button>
             </CardItem>
           </Card>
+          {/*BEGIN GRAPH DISPLAY CARD*/}
+          {this.state.selectedTicker && 
+          <Card>
+            <CardItem header>
+              <Icon name="stats" />
+              <Text>Prediction on {this.state.selectedTicker} for {this.state.graphType}</Text>
+            </CardItem>
+            
+              <Body>
+                <Candlestick data={this.props.stock.time_series}/>
+              </Body>
+            
+          </Card>}
         </Content>
       </Container>
     );

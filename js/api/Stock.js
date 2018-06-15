@@ -13,7 +13,7 @@ export const getData = req => {
   if (!funct) {
     return {};
   } else {
-    if (funct === "BATCH_STOCK_QUOTES") {
+    if (funct === "BATCH_STOCK_QUOTES" || funct === "TIME_SERIES_DAILY") {
       if (!symbol) {
         return {};
       }

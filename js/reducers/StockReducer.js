@@ -25,7 +25,27 @@ const INITIAL_STATE = {
 
 export default handleActions({
     [actions.changeStockData]: (state, action) => {
-        const stock = action.payload;
+        const old = action.payload.data;
+        
+        const stock = {
+            'meta': old['Meta Data'],
+            'time_series': [],
+        }
+        const oldTSeries = old['Time Series (Daily)'];
+        var i = 0;
+        for (var key in oldTSeries) {
+            if(i > 200) {
+                break;
+            }
+            var elem = {x: new Date(key), open: (oldTSeries[key])['1. open'], 
+                        high: (oldTSeries[key])['2. high'], 
+                        low: (oldTSeries[key])['3. low'], 
+                        close: (oldTSeries[key])['4. close']}
+            stock.time_series.push(elem);
+            i++;
+        }
+        console.log(stock);
+        
         return {
             ...state,
             stock
